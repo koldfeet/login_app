@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { promisify } = require("util")
+const { promisify } = require("util");
 
 //connecting to database start ========
 const db = mysql.createConnection({
@@ -18,21 +18,21 @@ exports.login = async (req, res) => {
         if (!email || !password) {
             return res.status(400).render("login", {
                 message: "Please provide an email and password"
-            })
-        }
+            });
+        };
 
         db.query("SELECT * FROM users WHERE email = ?", [email], async (error, results) => {
             console.log(results)
             if (!results || !(await bcrypt.compare(password, results[0].password))) {
                 res.status(401).render("login", {
                     message: "Email or Password is incorrect"
-                })
+                });
             } else {
                 const id = results[0].id;
 
                 const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
                     expiresIn: process.env.JWT_EXPIRES_IN
-                }) //create a token/cookie for user once they are logged in
+                }); //create a token/cookie for user once they are logged in
 
                 console.log("The token is: " + token);
 
@@ -41,17 +41,17 @@ exports.login = async (req, res) => {
                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
                     ),
                     httpOnly: true
-                }
+                };
 
                 res.cookie("jwt", token, cookieOptions);
                 res.status(200).redirect("/");
-            }
-        })
+            };
+        });
 
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 //register to page start====================
 exports.register = (req, res) => {
@@ -67,17 +67,17 @@ exports.register = (req, res) => {
     db.query('SELECT email FROM users WHERE email = ?', [email], async (error, result) => {
         if (error) {
             console.log(error);
-        }
+        };
 
         if (result.length > 0) {
             return res.render('register', {
                 message: "That email is already registered"
-            })
+            });
         } else if (password !== passwordConfirm) {
             return res.render("register", {
                 message: "Password do not match"
-            })
-        }
+            });
+        };
 
         //encrpting password
         let hashedPassword = await bcrypt.hash(password, 8);
@@ -93,13 +93,13 @@ exports.register = (req, res) => {
                 console.log(results);
                 return res.render("register", {
                     message: "User registered"
-                })
-            }
-        })
+                });
+            };
+        });
 
-        //sending all encrptied password to database start ================
-    })
-}
+        //sending all encrptied password to database end ================
+    });
+};
 
 //setting up auth for logged in user to see profile page START ========
 exports.isLoggedIn = async (req, res, next) => {
@@ -116,19 +116,19 @@ exports.isLoggedIn = async (req, res, next) => {
 
                 if (!result) {
                     return next();
-                }
+                };
 
                 req.user = result[0];
                 return next();
-            })
+            });
         } catch (error) {
             console.log(error);
             return next();
-        }
+        };
     } else {
         next();
-    }
-}
+    };
+};
 //setting up auth for logged in user to see profile page END ========
 
 //============logout set up Start==============
@@ -137,10 +137,10 @@ exports.logout = async (req, res) => {
     res.cookie("jwt", "logout", {
         expires: new Date(Date.now() + 2 * 1000), //cookie expire in 2s after logout
         httpOnly: true
-    })
+    });
 
-    res.status(200).redirect("/")
-}
+    res.status(200).redirect("/");
+};
 
 //============logout set up end==============
 
