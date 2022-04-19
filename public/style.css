@@ -44,3 +44,39 @@ nav li a:hover {
 }
 
 /* =============profile page style end================ */
+
+/* ==============home page============== */
+
+.jumbotron{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border: #563d7c solid 2px;
+   
+}
+.jumbotron h1{
+    display:flex;
+    justify-content: center;
+}
+
+.register, .lead-register{
+    display:flex;
+    justify-content: right;
+}
+
+body{
+    font-family: playfair display;
+}
+/* ==========end homepage========== */
+
+/* ==========login page========== */
+.card-header{
+    background-color: #563d7c;
+    color: #fff;
+}
+.card-body{
+    border: #563d7c solid 2px;
+    display: flex;
+    justify-content: center;
+}
+
