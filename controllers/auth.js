@@ -4,6 +4,15 @@ const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
 
 //connecting to database start ========
+
+// const db = mysql.createConnection({
+//     host: process.env.HEROKU_HOST,
+//     user: process.env.HEROKU_USER,
+//     password: process.env.HEROKU_PASSWORD,
+//     database: process.env.HEROKU_DB,
+// });
+
+
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,

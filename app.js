@@ -7,7 +7,17 @@ const { flatten } = require("express/lib/utils");
 dotenv.config({ path: "./.env" });
 const app = express();
 
+const PORT = process.env.PORT || 5000;
+
 //connecting to database start ========
+// const db = mysql.createConnection({
+//     host: process.env.HEROKU_HOST,
+//     user: process.env.HEROKU_USER,
+//     password: process.env.HEROKU_PASSWORD,
+//     database: process.env.HEROKU_DB
+// });
+
+
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
@@ -26,7 +36,9 @@ app.use(cookieParser());
 
 //start view engine for hbs to show html
 app.set("view engine", "hbs");
+// db.query("SELECT * FROM nodejs-login WHERE NAME = chris tran", () => {
 
+// })
 db.connect((error) => {
     if (error) {
         console.log(error);
@@ -43,6 +55,6 @@ app.use("/", require("./routes/pages"));
 app.use("/auth", require("./routes/auth"));
 
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log("Server started on Port 5000");
 });
