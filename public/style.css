@@ -80,3 +80,15 @@ body{
     justify-content: center;
 }
 
+.lead{
+    text-align: center;
+}
+.lead-login{
+    text-align: center;
+}
+.register{
+    text-align: center;
+}
+.lead-register{
+    text-align: center;
+}
