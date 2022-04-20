@@ -52,20 +52,24 @@ nav li a:hover {
     padding: 12px 20px;
     margin: 10px 0;
     border: #563d7c solid 2px;
-   
+    background-color: #fff;
+    
 }
+
+
 .jumbotron h1{
     display:flex;
     justify-content: center;
 }
 
-.register, .lead-register{
+.login, .lead-login, .register, .lead-register{
     display:flex;
-    justify-content: right;
+    justify-content: center;
 }
 
 body{
     font-family: playfair display;
+    background-color: lightgray;
 }
 /* ==========end homepage========== */
 

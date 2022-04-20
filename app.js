@@ -7,7 +7,7 @@ const { flatten } = require("express/lib/utils");
 dotenv.config({ path: "./.env" });
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 //connecting to database start ========
 // const db = mysql.createConnection({
