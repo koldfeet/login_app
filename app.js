@@ -56,5 +56,5 @@ app.use("/auth", require("./routes/auth"));
 
 
 app.listen(PORT, () => {
-    console.log("Server started on Port 5000");
+    console.log("Server started on Port 8000");
 });
