@@ -79,4 +79,17 @@ body{
     display: flex;
     justify-content: center;
 }
+.lead-login{
+    text-align: center;
+text-decoration: wavy;
+}
+.lead{
+    text-align: center;
+}
+.register{
+    text-align: center;
+}
+.lead-register{
+    text-align: center;
+}
 
